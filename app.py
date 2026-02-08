@@ -10,6 +10,18 @@ Session(app)
 
 FLAG = os.environ.get("FLAG", "CTF{dev}")
 
+@app.route("/")
+def index():
+    return """
+<h2>Ghost Login Portal</h2>
+<p>OTP based authentication gateway.</p>
+<ul>
+<li>POST /auth/start</li>
+<li>GET /dashboard</li>
+<li>GET /health</li>
+</ul>
+"""
+
 @app.route("/health")
 def health():
     return "ok"
@@ -31,4 +43,3 @@ def dashboard():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
-
